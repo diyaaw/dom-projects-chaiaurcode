@@ -1,24 +1,30 @@
-const randomcolor=function(){
-  const hex='0123456789ABCDEF'
-  let color='#'
+//function to change color of bg
+
+const randomColor= function(){
+  const hex="0123456789ABCDEF";
+  let color="#";
   for(let i=0;i<6;i++){
-    color+= hex[Math.floor(Math.random()*16)]
+    //the math.random gives a value between 0 and 1 on multiplying it will give a value between 0 and 16
+   color+=hex[Math.floor(Math.random()*16)]
   }
   return color;
 }
-function changebgcolor(){document.body.style.backgroundColor=randomcolor();
-}
-let intervalid;
 
-const startcolourchange= function(){
-  if(!intervalid){
-intervalid=setInterval(changebgcolor,1000)
-  }
+let intervalId;
+const startChangingcolor=function(){
+  function changeBgColor(){
+  document.body.style.backgroundColor=randomColor()
 }
-const stopcolourchange=function(){
- clearInterval(intervalid)
- intervalid=null
+if(!intervalId){
+intervalId=setInterval(changeBgColor,1000)
+}
 }
 
-document.querySelector('#start').addEventListener('click',startcolourchange)
-document.querySelector('#stop').addEventListener('click',stopcolourchange)
+const stopChangingcolor=function(){
+  clearInterval(intervalId)
+  intervalId=null
+}
+
+document.querySelector('#start').addEventListener('click',startChangingcolor)
+
+document.querySelector('#stop').addEventListener('click',stopChangingcolor)
